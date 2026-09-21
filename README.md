@@ -1,5 +1,7 @@
 # AI in Practice: Game Design and Development
 
+> Personal fork of `columbia-university-ai-games/game-dev-f26`.
+
 Student starter for COMS E6998 section 014, Fall 2026, a graduate-level course
 that also admits undergraduates under the stated enrollment policy. The
 syllabus on CourseWorks governs assignments. This starter contains an original
