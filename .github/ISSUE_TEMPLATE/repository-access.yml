@@ -1,0 +1,53 @@
+name: Request course repository Write access
+description: Ask the course TAs for Write access to Motivation Atlas, game-dev-f26, or both.
+title: "[Access] Course repository Write access"
+assignees:
+  - sriya26
+  - prabakaranc98
+  - thy055
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request Write access to the course repositories using the GitHub account
+        you want added. The TAs will use your issue-author
+        username, verify course enrollment, and grant approved Write access.
+        If GitHub sends an invitation, accept it to finish joining.
+        Submitting this form creates a request; a TA grants access after review.
+
+        Your university email will appear in this issue and be visible to
+        people with access to this repository. Include only the requested
+        university email; keep student IDs and other personal details out.
+  - type: input
+    id: university-email
+    attributes:
+      label: University email
+      description: Enter your Columbia UNI email (UNI@columbia.edu). Add and verify it under GitHub Settings > Emails for the account submitting this request. It can remain private in your GitHub profile.
+      placeholder: abc1234@columbia.edu
+    validations:
+      required: true
+  - type: dropdown
+    id: repositories
+    attributes:
+      label: Repositories
+      description: Choose where you need Write access.
+      options:
+        - motivation-atlas
+        - game-dev-f26
+        - Both motivation-atlas and game-dev-f26
+    validations:
+      required: true
+  - type: checkboxes
+    id: request
+    attributes:
+      label: Access request
+      options:
+        - label: The university email above is a verified email on the GitHub account submitting this request.
+          required: true
+        - label: I am taking AI in Practice and request Write access to the selected repositories for the GitHub account submitting this issue.
+          required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context (optional)
+      description: Mention an expired invitation or an access problem, if relevant.

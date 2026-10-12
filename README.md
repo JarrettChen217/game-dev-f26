@@ -22,6 +22,18 @@ The diagnostic's “Setup Verification” labels describe technical check result
 not a separate course assignment. Project tests and live evaluations remain
 required evidence for the midterm and final.
 
+## Course repository Write access
+
+[Request Write access](https://github.com/columbia-university-ai-games/game-dev-f26/issues/new?template=repository-access.yml)
+to `motivation-atlas`, `game-dev-f26`, or both.
+Submit the form from the GitHub account you want added. Enter your Columbia
+UNI email and confirm that it is a verified email on that GitHub account
+(Settings > Emails). This email will be visible in the request to people
+with repository access. The request is
+assigned to the three course TAs, who verify enrollment and grant approved
+Write access. If GitHub sends an invitation, accept it to finish joining.
+Submitting the form creates a request; a TA grants access after review.
+
 ## Course choice and this example
 
 Quick navigation: [Setup](#1-prepare-this-examples-environment) ·
@@ -237,9 +249,31 @@ that baseline, including its information and memory needs.
 
 The midterm includes both a reconstructed game and an agent that plays it.
 The starter's narrator demonstrates a model boundary; it is stateless and
-does not select actions. The player agent, episode runner, reusable skill and
-independent reviewer are later exercises. NPCs and creative rewrites are
-optional. Self-play fits competitive games; single-player games use a solver.
+does not select actions. NPCs and creative rewrites are optional. Self-play
+fits competitive games; single-player games use a solver.
+
+The Session 3 examples show one small agent team and one player interface
+for The Garden Door. Build your own for your classic; these are references.
+
+- `course_game/player_interface.py`: the five operations a playing agent
+  uses (`reset`, `observe`, `legal_actions`, `step`, `outcome`), with a step
+  limit and counted invalid actions. `tests/test_player_interface.py` runs
+  the acceptance trace and the boundary checks.
+- `docs/rule-source-map.md`: the rule and source map, every claim labeled
+  with its evidence, plus the choices made for the playing agent.
+- `AGENTS.md`: the implementation agent's standing instructions.
+- `.claude/skills/rule-change/SKILL.md`: a reusable skill for changing a rule
+  with a map row, a failing test first and a summary for review.
+- `.claude/agents/rules-reviewer.md`: an independent, read-only review task.
+- `agent-config.json`: the configuration record, now listing the three team
+  members and the player interface.
+
+The skill and reviewer are in Claude Code's native formats. The skill file
+follows the Agent Skills format that several other assistants read. With
+another assistant, give the reviewer's instructions to a fresh session that
+did not write the change and has file editing turned off; record that setup
+in your configuration. The player agent, episode runner and baseline come in
+Sessions 4 and 5.
 
 Use Asana for tasks, owners, acceptance criteria, dependencies, weekly PPP
 and gate decisions. Link task URLs from PR descriptions and PR/CI URLs from
@@ -259,7 +293,10 @@ failure modes, test commands and CI; native plugin/skill formats stay distinct.
 | [course_game/narrator.py](course_game/narrator.py) | Optional provider adapters and shared validation |
 | [course_game/setup_check.py](course_game/setup_check.py) | Explicit offline/live setup diagnostics |
 | [course_game/engine_check.py](course_game/engine_check.py) | Pyxel example smoke check |
-| [agent-config.json](agent-config.json) | Common agent configuration and limits |
+| [course_game/player_interface.py](course_game/player_interface.py) | The playing agent's observation/action interface |
+| [docs/rule-source-map.md](docs/rule-source-map.md) | Rule and source map with evidence labels |
+| [agent-config.json](agent-config.json) | Common agent configuration, agent team and limits |
+| [.claude/](.claude/) | Example skill and independent reviewer |
 | [tests/](tests/) | Deterministic rules and mocked-provider tests |
 | [.github/workflows/setup-check.yml](.github/workflows/setup-check.yml) | CI and manually authorized live checks |
 | [pyproject.toml](pyproject.toml) and [uv.lock](uv.lock) | Example dependencies and reproducible versions |
@@ -291,3 +328,11 @@ Provider references: [OpenAI quickstart](https://developers.openai.com/api/docs/
 [OpenAI structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs),
 [Anthropic Messages](https://platform.claude.com/docs/en/api/messages/create),
 [Anthropic structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs).
+
+## Browser minigames
+
+[Get Out!](minigames/get-out/index.html) is a standalone puzzle workshop with
+keyboard and touch play, original levels, a board editor, and move traces.
+Open its `index.html` directly in a browser. See the
+[minigame instructions](minigames/get-out/README.md) for local serving,
+classroom use, and the rules API.

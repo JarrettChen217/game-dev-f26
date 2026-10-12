@@ -1,0 +1,8 @@
+# Instructor review for classroom infrastructure and student variations.
+/minigames/ @bgarakani
+/scripts/minigames.py @bgarakani
+/tests/test_minigame_tools.py @bgarakani
+/.github/ @bgarakani
+/.agents/ @bgarakani
+/AGENTS.md @bgarakani
+/.gitignore @bgarakani

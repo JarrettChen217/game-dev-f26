@@ -28,7 +28,25 @@ path; other platforms require instructor permission. This original demonstration
 - The midterm reconstructs a classic and includes an agent that plays it.
   Infocom is a sample set; other classic titles and genres are encouraged.
   Keep development tools separate from the player's observation/action
-  interface. The starter narrator is not yet a player or episode runner.
+  interface (`course_game/player_interface.py`). The starter narrator is
+  not a player; the episode runner and baseline come in Sessions 4 and 5.
+- To change a rule, legal action, observation or outcome, follow
+  `.claude/skills/rule-change/SKILL.md`: map row in
+  `docs/rule-source-map.md`, failing test first, then the engine. Hand the
+  summary to the independent reviewer (`.claude/agents/rules-reviewer.md`);
+  never review or approve your own change.
 - Never put secrets or personal playtester data in code, prompts, task text,
   recordings or reports. Model settings and artifact references belong in
   `agent-config.json`; runtime model identifiers belong in evaluation reports.
+
+## Get Out variation lab
+
+For this exercise, read `minigames/STUDENT-GUIDE.md` and use the repository skill
+`.agents/skills/minigame-variation/SKILL.md`. Student changes belong only in
+`minigames/submissions/<lowercase-github-login>/get-out/`; the reference and
+shared tooling are instructor-owned. Use the scaffold, keep one branch/PR per
+student, and stage that folder explicitly. Students write their prediction,
+interpretation, and AI disclosure. Record observed play only; unfinished human
+playtests remain TODOs in a draft. Tests of game rules and human experience
+provide different evidence. The Atlas contribution retains its own repository
+instructions and October 18 deadline.
