@@ -1,0 +1,16 @@
+{
+  "profile": "laika-source-60hz-v1",
+  "target": "aarch64-apple-darwin",
+  "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13) (Homebrew)",
+  "library": "engine.dylib",
+  "library_sha256": "3b65afc348b1b78391d4798d4c720158a5f32132d3e38732e711a89c59236b22",
+  "source_sha256": {
+    "tank_game/laika_60hz/source/constants.rs": "f8017791381fed8c8254c72221231ab363edc0243bd1bfd48996862286879190",
+    "tank_game/laika_60hz/source/game.rs": "e3a2f708e639d14e6434b7f8c9a9c142cf34e2c887e10518d5bbbd2afc5ccc56",
+    "tank_game/laika_60hz/source/laika.rs": "b00559580aad660fc41c57db38ede1463e9199c21afcf72c300345e9ec4be55b",
+    "tank_game/laika_60hz/source/lib.rs": "ca9345396260fcb775204c7bf82687b9fec8d95b8cf882b26921556fe1067516",
+    "tank_game/original_laika/source/ballistics.rs": "c593893df680de85abc4bc9425913adc975410dec65d8ec5b9ab887d87004b27",
+    "tank_game/original_laika/source/maze.rs": "438806a3a967471ad190c3ec4da725116722cf803dfe2252bb37296fa47f6865",
+    "tank_game/original_laika/source/rng.rs": "9294977dc0f5ff78ac2694c799ed40fe454a3c931cd795ee0e9734fddecd7951"
+  }
+}

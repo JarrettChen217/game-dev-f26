@@ -1,0 +1,376 @@
+{
+  "policy": "simple-patrol-v1",
+  "map": "fixed-v1",
+  "steps": 720,
+  "initial_tanks": [
+    {
+      "id": "tank-1",
+      "x": 16.0,
+      "y": 16.0,
+      "heading_deg": 0.0,
+      "radius": 8.0
+    },
+    {
+      "id": "tank-2",
+      "x": 208.0,
+      "y": 16.0,
+      "heading_deg": 180.0,
+      "radius": 8.0
+    }
+  ],
+  "rules": {
+    "tank_radius": 8.0,
+    "forward_speed": 45.0,
+    "reverse_speed": 35.0,
+    "turn_speed_deg": 180.0,
+    "tick_rate": 60,
+    "bullet_radius": 1.5,
+    "bullet_speed": 90.0,
+    "bullet_lifetime": 10.0,
+    "fire_interval": 0.25,
+    "max_bullets": 5,
+    "explosion_duration": 0.35
+  },
+  "decision_hz": 10,
+  "live_steps": 720,
+  "projectile_steps": 0,
+  "restarts": 0,
+  "round_results": [],
+  "invalid_actions": 0,
+  "decisions": 240,
+  "failed_decisions": 0,
+  "action_digest": "da35cefad61b9a17cfb9f1060d269a84f56b7ddd13b037cdd147601879eb24ed",
+  "final_scene": {
+    "schema_version": 4,
+    "round_id": 1,
+    "observation_precision": {
+      "position": 0.125,
+      "heading_deg": 0.25,
+      "velocity": 0.125
+    },
+    "observation_tick": 720,
+    "self_id": "tank-1",
+    "map": {
+      "width": 256,
+      "height": 192,
+      "tile_size": 32,
+      "columns": 8,
+      "rows": 6,
+      "wall_thickness": 2,
+      "walls": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 32,
+          "y": 0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 64,
+          "y": 0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 96,
+          "y": 0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 128,
+          "y": 0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 160,
+          "y": 0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 192,
+          "y": 0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 224,
+          "y": 0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 0,
+          "y": 190,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 32,
+          "y": 190,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 64,
+          "y": 190,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 96,
+          "y": 190,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 128,
+          "y": 190,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 160,
+          "y": 190,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 192,
+          "y": 190,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 224,
+          "y": 190,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 32,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 64,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 96,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 128,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 160,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 254,
+          "y": 0,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 254,
+          "y": 32,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 254,
+          "y": 64,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 254,
+          "y": 96,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 254,
+          "y": 128,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 254,
+          "y": 160,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 63.0,
+          "y": 0,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 63.0,
+          "y": 32,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 63.0,
+          "y": 64,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 63.0,
+          "y": 96,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 127.0,
+          "y": 64,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 127.0,
+          "y": 96,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 127.0,
+          "y": 128,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 127.0,
+          "y": 160,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 191.0,
+          "y": 0,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 191.0,
+          "y": 32,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 191.0,
+          "y": 64,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 191.0,
+          "y": 96,
+          "width": 2,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 63.0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 96,
+          "y": 31.0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 64,
+          "y": 127.0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 128,
+          "y": 127.0,
+          "width": 32,
+          "height": 2
+        },
+        {
+          "x": 192,
+          "y": 63.0,
+          "width": 32,
+          "height": 2
+        }
+      ]
+    },
+    "rules": {
+      "tank_radius": 8.0,
+      "forward_speed": 45.0,
+      "reverse_speed": 35.0,
+      "turn_speed_deg": 180.0,
+      "tick_rate": 60,
+      "bullet_radius": 1.5,
+      "bullet_speed": 90.0,
+      "bullet_lifetime": 10.0,
+      "fire_interval": 0.25,
+      "max_bullets": 5,
+      "explosion_duration": 0.35
+    },
+    "tanks": [
+      {
+        "id": "tank-1",
+        "x": 47.75,
+        "y": 80.375,
+        "heading_deg": 306.0,
+        "radius": 8.0
+      },
+      {
+        "id": "tank-2",
+        "x": 239.75,
+        "y": 80.375,
+        "heading_deg": 306.0,
+        "radius": 8.0
+      }
+    ],
+    "bullets": [],
+    "self_status": {
+      "alive": true,
+      "active_bullets": 0,
+      "can_fire": true
+    },
+    "round_status": "PLAYING",
+    "effects": [],
+    "duel": {
+      "elapsed": 12.000000000000176,
+      "limit": 120,
+      "result": null
+    }
+  }
+}

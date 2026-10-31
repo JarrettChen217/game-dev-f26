@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tank change verification"
+  short_description: "Verify tank changes with reproducible evidence"
+  default_prompt: "Use $tank-verify-change to verify this change and report actual results."
+policy:
+  allow_implicit_invocation: true

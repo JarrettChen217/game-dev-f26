@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "bindings": {
+    "forward": [
+      "W",
+      "UP"
+    ],
+    "backward": [
+      "S",
+      "DOWN"
+    ],
+    "turn_left": [
+      "A",
+      "LEFT"
+    ],
+    "turn_right": [
+      "D",
+      "RIGHT"
+    ],
+    "fire": [
+      "F",
+      "SPACE"
+    ],
+    "quit": [
+      "ESCAPE"
+    ],
+    "inspection_previous": [
+      "PAGEUP"
+    ],
+    "inspection_next": [
+      "PAGEDOWN"
+    ],
+    "restart": [
+      "SPACE"
+    ],
+    "next_map": [
+      "N"
+    ],
+    "inspection_toggle": [
+      "TAB"
+    ]
+  }
+}

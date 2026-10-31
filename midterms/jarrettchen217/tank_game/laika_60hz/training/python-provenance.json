@@ -1,0 +1,31 @@
+{
+  "reference_repository": "JarrettChen217/killfield",
+  "reference_commit": "8ccc530f70216553f5146872a2cc3864446df0dd",
+  "executable_reference_commit": "e8b1b7a9a0c919e28e10a4b8ae068c0b70fec62d",
+  "sources": {
+    "duel_ppo.py": "00abe17acfccf80a900a1408717dd2feef4efb9c49a951a95fc1e156d7607a30",
+    "hybrid_rebuild.py": "add2d33f11135272aecf5fc666b3fcf3f715941b73aa047f4754601425b35cad"
+  },
+  "unchanged_function_ast_sha256": {
+    "compute_advantages": "df343811a3ba3d7f2820e91aebb30685193079a2585412f05a7a1a7bb76c47cc",
+    "save_live": "16f3da1ef0b213915b00dcd8771eddb5509447b6777ef7b31ae6f48d204d99b2",
+    "save_resume": "451510ddadba1a9a2c903cc127f12980cfc9b22efcf92337623242db6038a86f",
+    "main": "f99a2c42a1ed4972bc15909350da82b8c4b972b71375a8764b29f377762844f7"
+  },
+  "runtime_sibling_reference_import": false,
+  "changes": [
+    "relative Tank environment import",
+    "schema24 constants and prior reconstructed Hybrid actor/critic",
+    "documented60Hz Config defaults; original loss/Adam/GAE/main/serializers unchanged",
+    "engineering hook provides finite-gradient/contract/full-state restore accounting"
+  ],
+  "assumptions": [
+    "legacy shared256-to-1critic; original orthogonal initialization and zero gate outputs",
+    "pure nativeLaika; not original matureleague/stages/ancestry",
+    "60Hz histories/change-rate/horizon differences declared in environment contract"
+  ],
+  "unchanged_model_class_ast_sha256": {
+    "ActorCritic": "16ca503a2b6a3a2c42f72d1aaa83b1df19c443ea0caf2fa43e2f6ad95fafbd9c",
+    "HybridActorCritic": "eb139449fd2c7e981300d830852e14c4098a7a3ea2287ba3c7c90bf7b3bc140f"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "profile": "source60-hybrid-play-v1",
+  "target": "aarch64-apple-darwin",
+  "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13) (Homebrew)",
+  "library": "play.dylib",
+  "library_sha256": "5379a5dbf6adbd02dfe3bbfb38dede9b933f5274eb4ac742dd48fa0f4e289549",
+  "source_sha256": {
+    "tank_game/laika_60hz/source/constants.rs": "f8017791381fed8c8254c72221231ab363edc0243bd1bfd48996862286879190",
+    "tank_game/laika_60hz/source/game.rs": "e3a2f708e639d14e6434b7f8c9a9c142cf34e2c887e10518d5bbbd2afc5ccc56",
+    "tank_game/laika_60hz/source/laika.rs": "b00559580aad660fc41c57db38ede1463e9199c21afcf72c300345e9ec4be55b",
+    "tank_game/laika_60hz/source/lib.rs": "ca9345396260fcb775204c7bf82687b9fec8d95b8cf882b26921556fe1067516",
+    "tank_game/laika_60hz/training/source/batch.rs": "1b1c731a92d5b27fe327af548efc8abb879165d803adf89c1bbf0bc80c8f23f6",
+    "tank_game/laika_60hz/training/source/duel.rs": "942fecc6bf7683677d47a71dfd9205270d6a81c2295e5726123aca0506f3b4ad",
+    "tank_game/laika_60hz/training/source/hybrid_obs.rs": "d23e8adf7d9585360ac9af5760c9c7a6d7374bbf1f764abd93346dc0b39c2bad",
+    "tank_game/laika_60hz/training/source/lib.rs": "473814c30b05f681968e9a353653e958a9c30acea845d248c5188004d4ce7b44",
+    "tank_game/laika_60hz/training/source/play_fixtures.rs": "d924c417600996f45edf37559ab67cddcd8d30edbef34558bedcf8a4bd9f60c7",
+    "tank_game/laika_60hz/training/source/play_lib.rs": "dba5964b1973c3d44d311c860299aafbcccd877ebd9e2ed31ef083ae2449d296",
+    "tank_game/laika_60hz/training/source/risk.rs": "7aae53698c6a26dc79415175aeaac1cdefda64f99f64bca8521eff0c6b2f6414",
+    "tank_game/laika_60hz/training/source/sandbox.rs": "725ce59a00039e439b8fcdc6884356c4f1fd81857bfcda8fd974393e3250aea4",
+    "tank_game/laika_60hz/training/source/score.rs": "3615cb28ab78bf7e8dc24d42a0fe6f42a9b183facfb6f96267a2a64e05d91e36",
+    "tank_game/original_laika/source/ballistics.rs": "c593893df680de85abc4bc9425913adc975410dec65d8ec5b9ab887d87004b27",
+    "tank_game/original_laika/source/maze.rs": "438806a3a967471ad190c3ec4da725116722cf803dfe2252bb37296fa47f6865",
+    "tank_game/original_laika/source/rng.rs": "9294977dc0f5ff78ac2694c799ed40fe454a3c931cd795ee0e9734fddecd7951"
+  }
+}

@@ -1,0 +1,41 @@
+name: Midterm jarrettchen217
+# Deterministic checks for midterms/jarrettchen217 only. No secrets, no network
+# model calls; the learned player runs locally from the committed u19588 weights.
+on:
+  pull_request:
+    paths:
+      - 'midterms/jarrettchen217/**'
+      - '.github/workflows/midterm-jarrettchen217.yml'
+  push:
+    paths:
+      - 'midterms/jarrettchen217/**'
+      - '.github/workflows/midterm-jarrettchen217.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  checks:
+    name: Tank Trouble rules, actions, termination, regression, limits
+    # The native60Hz play library targets macOS arm64 (Apple silicon).
+    runs-on: macos-14
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: midterms/jarrettchen217
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.13.6'
+      - name: Install the locked environment
+        run: uv sync --frozen
+      - name: Lint
+        run: uv run --frozen ruff check .
+      - name: Rebuild the native library from source and confirm it loads
+        run: |
+          rustc --version
+          uv run --frozen python scripts/build_native.py
+      - name: Rules, legal actions, termination, regression, episode limits, information boundary
+        run: uv run --frozen python scripts/run_checks.py

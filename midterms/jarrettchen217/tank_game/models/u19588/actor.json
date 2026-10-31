@@ -1,0 +1,217 @@
+{
+  "kind": "tank-u19588-inference-v1",
+  "arch": "hybrid_schema24_reconstructed_v1",
+  "update": 19588,
+  "schema": 24,
+  "observation": 1028,
+  "actions": 18,
+  "floats": 261501,
+  "bytes": 1046004,
+  "sha256": "c90d02c99b919c0f990efb24240d9b76814d662e64a45a2ac3fb7f529bc3d191",
+  "source_checkpoint_sha256": "b1f1ee503cb41cb5e90f92c9e31cd9621f646f7c545f033b5d02eb9f59dcaac8",
+  "environment_contract_sha256": "a5b28a10b4f65567c272b9307a6e68a5162c2ff8a06d35f2fba8a94155f96d75",
+  "source_commit": "4d45fb079ddd1f7544476d5280bf71276fee874e",
+  "tensors": {
+    "actor.bias": {
+      "offset": 0,
+      "length": 18,
+      "shape": [
+        18
+      ]
+    },
+    "actor.weight": {
+      "offset": 18,
+      "length": 4608,
+      "shape": [
+        18,
+        256
+      ]
+    },
+    "ammo_alpha_old": {
+      "offset": 4626,
+      "length": 4,
+      "shape": [
+        4
+      ]
+    },
+    "ammo_delta.0.bias": {
+      "offset": 4630,
+      "length": 64,
+      "shape": [
+        64
+      ]
+    },
+    "ammo_delta.0.weight": {
+      "offset": 4694,
+      "length": 16384,
+      "shape": [
+        64,
+        256
+      ]
+    },
+    "ammo_delta.2.bias": {
+      "offset": 21078,
+      "length": 4,
+      "shape": [
+        4
+      ]
+    },
+    "ammo_delta.2.weight": {
+      "offset": 21082,
+      "length": 256,
+      "shape": [
+        4,
+        64
+      ]
+    },
+    "bullets.0.bias": {
+      "offset": 21338,
+      "length": 32,
+      "shape": [
+        32
+      ]
+    },
+    "bullets.0.weight": {
+      "offset": 21370,
+      "length": 320,
+      "shape": [
+        32,
+        10
+      ]
+    },
+    "bullets.2.bias": {
+      "offset": 21690,
+      "length": 32,
+      "shape": [
+        32
+      ]
+    },
+    "bullets.2.weight": {
+      "offset": 21722,
+      "length": 1024,
+      "shape": [
+        32,
+        32
+      ]
+    },
+    "dodge_alpha_old": {
+      "offset": 22746,
+      "length": 1,
+      "shape": []
+    },
+    "dodge_delta.0.bias": {
+      "offset": 22747,
+      "length": 64,
+      "shape": [
+        64
+      ]
+    },
+    "dodge_delta.0.weight": {
+      "offset": 22811,
+      "length": 16384,
+      "shape": [
+        64,
+        256
+      ]
+    },
+    "dodge_delta.2.bias": {
+      "offset": 39195,
+      "length": 1,
+      "shape": [
+        1
+      ]
+    },
+    "dodge_delta.2.weight": {
+      "offset": 39196,
+      "length": 64,
+      "shape": [
+        1,
+        64
+      ]
+    },
+    "idle_logit_penalty": {
+      "offset": 39260,
+      "length": 1,
+      "shape": []
+    },
+    "map.0.bias": {
+      "offset": 39261,
+      "length": 16,
+      "shape": [
+        16
+      ]
+    },
+    "map.0.weight": {
+      "offset": 39277,
+      "length": 1008,
+      "shape": [
+        16,
+        7,
+        3,
+        3
+      ]
+    },
+    "map.2.bias": {
+      "offset": 40285,
+      "length": 32,
+      "shape": [
+        32
+      ]
+    },
+    "map.2.weight": {
+      "offset": 40317,
+      "length": 4608,
+      "shape": [
+        32,
+        16,
+        3,
+        3
+      ]
+    },
+    "map.5.bias": {
+      "offset": 44925,
+      "length": 128,
+      "shape": [
+        128
+      ]
+    },
+    "map.5.weight": {
+      "offset": 45053,
+      "length": 122880,
+      "shape": [
+        128,
+        960
+      ]
+    },
+    "scalars.0.bias": {
+      "offset": 167933,
+      "length": 128,
+      "shape": [
+        128
+      ]
+    },
+    "scalars.0.weight": {
+      "offset": 168061,
+      "length": 11264,
+      "shape": [
+        128,
+        88
+      ]
+    },
+    "trunk.0.bias": {
+      "offset": 179325,
+      "length": 256,
+      "shape": [
+        256
+      ]
+    },
+    "trunk.0.weight": {
+      "offset": 179581,
+      "length": 81920,
+      "shape": [
+        256,
+        320
+      ]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tank project handoff"
+  short_description: "Save verified progress and synchronize task documentation"
+  default_prompt: "Use $tank-handoff to record this session's verified state and synchronize the affected documents and authorized Asana task."
+policy:
+  allow_implicit_invocation: true

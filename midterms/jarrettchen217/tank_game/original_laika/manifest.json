@@ -1,0 +1,47 @@
+{
+  "profile": "laika-original-v1",
+  "source": "https://github.com/Cichlider/killfield",
+  "artifact_source": "Existing cached original viewer-v17b/kf_engine.wasm, not modified or rebuilt",
+  "wasm_sha256": "7aea2a29bef93c6339fe38b7948cf3d2253757dd4b0c5d70624a8265ce58541d",
+  "wasm_bytes": 243432,
+  "source_files": {
+    "laika.rs": {
+      "git_blob": "7bc0fe2b02f0b2573cb7b28217ec640920c3ce5e",
+      "sha256": "2956e2c8c25b741e87dc765edc2f79fef365ab76ece2602dbf94d24f7c0228e3"
+    },
+    "maze.rs": {
+      "git_blob": "ca1c90c904ab631d607424bacf11a9a943c80a43",
+      "sha256": "438806a3a967471ad190c3ec4da725116722cf803dfe2252bb37296fa47f6865"
+    },
+    "ballistics.rs": {
+      "git_blob": "2739ecbaad9d6e431a10c91cbd9862b4734a6a90",
+      "sha256": "c593893df680de85abc4bc9425913adc975410dec65d8ec5b9ab887d87004b27"
+    },
+    "constants.rs": {
+      "git_blob": "0d96d60b5ad450c4b6d9b114de73b7f77813e412",
+      "sha256": "04bfeeaed1d00e779a628e3aae244a2953636a16d10d8514e478a3639e6e3d6a"
+    },
+    "rng.rs": {
+      "git_blob": "702ffd4306981335ccd29d95569885fb455d383f",
+      "sha256": "9294977dc0f5ff78ac2694c799ed40fe454a3c931cd795ee0e9734fddecd7951"
+    },
+    "game.rs": {
+      "git_blob": "fd878cf6bcfb74127839463815fb57eb7ca605b3",
+      "sha256": "c1665ba9e170a2faeaa61aa13a6162784d5caf9d3f552a0b84001e6c58bead06"
+    }
+  },
+  "semantics": {
+    "physics_hz": 25,
+    "human_seat": 1,
+    "laika_mask": 1,
+    "simulation_authority": "original-wasm-only",
+    "render_header_slots": 138,
+    "hybrid_schema": 24,
+    "hybrid_total_slots": 1038,
+    "self_offset": 856,
+    "opponent_offset": 868,
+    "bullet_offset": 900,
+    "bullet_stride": 10,
+    "bullet_slots": 10
+  }
+}

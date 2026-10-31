@@ -1,0 +1,13 @@
+{
+  "fork_commit": "8ccc530",
+  "executable_continuation_commit": "e8b1b7a9a0c919e28e10a4b8ae068c0b70fec62d",
+  "classification": "our schema24 reconstruction, not exact author v17b",
+  "source_sha256": {
+    "hybrid_obs.rs": "0d34a281538ed967edf396842731fddd0ce2af6af4ba132f54e50de4aa59b014",
+    "risk.rs": "b12aea7cd014f18f83a749a48ab1b3ae39dede504c534e4eb8c6d43d9513f4cd",
+    "sandbox.rs": "dbbe719bcfb1bcbe02096ed09a54d0c954b7955e0cc1d6190927af0a1f32d5b8",
+    "score.rs": "84fa26bac398db3ee14607b81fa0199076cee3511d61725ac2e2d71360aef8cc",
+    "duel.rs": "7e049899ea99da73d340ac4919b6f44cb58cc06a40888361bb21b0ead07c4b12",
+    "ffi_duel.rs": "eced2709841d86bb55daae5f362b6fe3f0aacd0778b5fbaa4a6e89e3e19306dc"
+  }
+}
