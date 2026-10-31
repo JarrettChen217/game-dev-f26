@@ -1,9 +1,10 @@
-"""Headless rounds of the Hybrid player (u19588 by default) against native Laika.
+"""Headless rounds of the Hybrid player (u19588 by default) against Laika, Hard or Simple.
 
 The player only sees the schema24 observation (1028 float32) and bullet mask the
 play bridge exposes, and only returns one of 18 actions; the engine owns state.
 
   smoke:  uv run --frozen python scripts/evaluate.py --seeds 1000
+  bots:   add --opponent hard (or simple, laika, all); default laika
   suite:  uv run --frozen python scripts/evaluate.py --suite eval/heldout-suite-v1.json --out reports/heldout.json
   trace:  add --trace reports/trace.jsonl to log observation -> action for the first round
 """
@@ -86,25 +87,84 @@ def play_round(lib, policy, seed, trace=None):
         lib.kf60_play_free(handle)
 
 
+class Timed:
+    """Wraps the learned policy to time each decision without changing it."""
+
+    def __init__(self, policy):
+        self.policy, self.latency, self.label = policy, [], policy.label
+
+    def action(self, features, mask):
+        start = time.perf_counter()
+        action = self.policy.action(features, mask)
+        self.latency.append(time.perf_counter()-start)
+        return action
+
+
+def play_round_scripted(policy, seed, name):
+    """u19588 in seat 0; Simple or Hard in seat 1 through the game's own public
+    observation and request path, at the decision rate the game uses for that bot."""
+    from tank_game.agents import AgentScheduler, InlineWorker
+    from tank_game.laika_60hz.mac_play import HybridPlayWorld
+    from tank_game.strategies import make_policy
+    bot = make_policy(name)
+    scheduler = AgentScheduler(InlineWorker(bot), decision_hz=getattr(bot, 'decision_hz', 10))
+    timed = Timed(policy)
+    world = HybridPlayWorld(seed, policy=timed, mode='human', strategy='hybrid')
+    try:
+        frames = 0
+        while world.observe('tank-1')['round_status'] != 'GAME_OVER':
+            if frames >= LIMIT:
+                raise RuntimeError(f'seed {seed}: round exceeded the {LIMIT}-frame limit')
+            world.submit_action('tank-1', scheduler.request(world.observe('tank-1')))
+            world.step()
+            frames += 1
+        info = world._bridge.info
+        latency = timed.latency
+        return {'seed': seed, 'outcome': OUTCOMES.get(int(info[2]), 'invalid'), 'frames': int(info[1]),
+                'decisions': len(latency), 'illegal_actions': 0, 'shots': int(info[4]), 'hits': int(info[5]),
+                'decision_ms_mean': round(1000*float(np.mean(latency)), 3) if latency else None,
+                'decision_ms_p95': round(1000*float(np.percentile(latency, 95)), 3) if latency else None}
+    finally:
+        scheduler.close()
+        world.close()
+
+
+def summarize(policy, opponent, rounds, suite):
+    tally = {k: sum(r['outcome'] == k for r in rounds) for k in OUTCOMES.values()}
+    return {'model': policy.label, 'model_sha256': policy.manifest['sha256'], 'opponent': opponent,
+            'suite': suite, 'rounds': len(rounds), 'tally': tally,
+            'illegal_actions': sum(r['illegal_actions'] for r in rounds),
+            'rounds_at_limit': sum(r['frames'] >= LIMIT for r in rounds),
+            'decision_ms_mean': round(float(np.mean([r['decision_ms_mean'] for r in rounds])), 3),
+            'decision_ms_p95_max': max(r['decision_ms_p95'] for r in rounds),
+            'llm_calls': 0, 'tokens': 'N/A (local NumPy inference)', 'cost_usd': 0.0, 'per_round': rounds}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--seeds', type=int, nargs='*', default=[])
     parser.add_argument('--suite', type=Path, help='frozen suite JSON; its seeds replace --seeds')
     parser.add_argument('--model', type=Path, help='model manifest (default: tank_game/models/active.json)')
+    parser.add_argument('--opponent', choices=('laika', 'hard', 'simple', 'all'), default='laika')
     parser.add_argument('--trace', type=Path)
     parser.add_argument('--out', type=Path)
     args = parser.parse_args()
     seeds = json.loads(args.suite.read_text())['seeds'] if args.suite else args.seeds
     if not seeds:
         parser.error('give --seeds or --suite')
-    policy, lib, trace = load_hybrid(args.model, fallback=False), bridge(), [] if args.trace else None
-    rounds = [play_round(lib, policy, s, trace if i == 0 else None) for i, s in enumerate(seeds)]
-    tally = {k: sum(r['outcome'] == k for r in rounds) for k in OUTCOMES.values()}
-    report = {'model': policy.label, 'model_sha256': policy.manifest['sha256'], 'opponent': 'native Laika',
-              'suite': str(args.suite) if args.suite else None, 'rounds': len(rounds), 'tally': tally,
-              'illegal_actions': sum(r['illegal_actions'] for r in rounds),
-              'llm_calls': 0, 'tokens': 'N/A (local NumPy inference)', 'cost_usd': 0.0, 'per_round': rounds}
-    print(json.dumps({k: v for k, v in report.items() if k != 'per_round'}, indent=2))
+    policy, trace = load_hybrid(args.model, fallback=False), [] if args.trace else None
+    opponents = ('laika', 'hard', 'simple') if args.opponent == 'all' else (args.opponent,)
+    reports = []
+    for opponent in opponents:
+        if opponent == 'laika':
+            lib = bridge()
+            rounds = [play_round(lib, policy, s, trace if i == 0 else None) for i, s in enumerate(seeds)]
+        else:
+            rounds = [play_round_scripted(policy, s, opponent) for s in seeds]
+        reports.append(summarize(policy, {'laika': 'native Laika'}.get(opponent, opponent.capitalize()), rounds,
+                                 str(args.suite) if args.suite else None))
+        print(json.dumps({k: v for k, v in reports[-1].items() if k != 'per_round'}), flush=True)
+    report = reports[0] if len(reports) == 1 else {'opponents': reports}
     for path, data in ((args.out, report), (args.trace, trace)):
         if path:
             path.parent.mkdir(parents=True, exist_ok=True)
