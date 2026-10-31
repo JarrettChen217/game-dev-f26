@@ -1,8 +1,8 @@
 # Evaluation
 
-> Status (2026-10-31): the held-out suite is declared and frozen in
-> [`eval/heldout-suite-v1.json`](eval/heldout-suite-v1.json). It has **not been run yet**. The numbers in
-> section 2 are earlier *development* panels, not held-out results.
+> Status (2026-10-31): the held-out suite was frozen in [`eval/heldout-suite-v1.json`](eval/heldout-suite-v1.json)
+> (commit e58cc0b), then **run once** at commit 10ee4d5. Results are in section 3 and
+> [`eval/heldout-results-v1.json`](eval/heldout-results-v1.json). Section 2 lists earlier *development* panels for context only.
 
 ## 1. Question and design choices
 
@@ -35,44 +35,62 @@ How training worked:
 - Training: PPO, fresh initialization, against native Laika.
 - Scale: 16 workers × 16 environments × 308-step rollouts, 96,529,664 decisions in total, on a Linux RTX 3070 training machine.
 
-## 3. Held-out comparison (frozen 2026-10-31, to run)
+## 3. Held-out comparison (frozen and run once, 2026-10-31)
 
-- Suite: [`eval/heldout-suite-v1.json`](eval/heldout-suite-v1.json).
-- Seeds: 100 map seeds starting at 3,000,000,000. Every earlier panel used seeds below 100,000.
-- Player: frozen u19588 (weights SHA-256 `c90d02c9…d191`).
-- Opponents: native Laika, Hard and Simple.
+The suite was frozen before the run:
+- [`eval/heldout-suite-v1.json`](eval/heldout-suite-v1.json), committed in e58cc0b;
+- seeds: 100 map seeds starting at 3,000,000,000, while every earlier panel used seeds below 100,000;
+- player: frozen u19588 (weights SHA-256 `c90d02c9…d191`), argmax actions;
+- opponents: native Laika, Hard and Simple.
 
-The rules, fixed before any run:
+The rules, fixed before the run:
 - no training or tuning;
-- each opponent is run once over all seeds;
+- each opponent is played once over all seeds;
 - every round is reported.
 
-Command (working directory `midterms/jarrettchen217`):
+The run:
+- one run at commit `10ee4d5`, 2026-10-31 21:34–21:41 UTC;
+- on the 14-inch MacBook Pro (M2 Pro);
+- per-round results in [`eval/heldout-results-v1.json`](eval/heldout-results-v1.json).
 
 ```bash
-uv run --frozen python scripts/evaluate.py --suite eval/heldout-suite-v1.json --out eval/heldout-results-v1.json
+# working directory: midterms/jarrettchen217
+uv run --frozen python scripts/evaluate.py --suite eval/heldout-suite-v1.json --opponent all --out eval/heldout-results-v1.json
 ```
 
-| Opponent | Win | Loss | Both destroyed | Time draw | Illegal actions | Rounds at limit | Decision ms (mean / p95) |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| native Laika | TODO | | | | | | |
-| Hard | TODO | | | | | | |
-| Simple | TODO | | | | | | |
+| Opponent | Win | Loss | Both destroyed | Time draw | Win rate (95% Wilson) | Illegal actions | Rounds at limit | Mean round length | Decision ms, mean / worst-round p95 |
+| --- | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | --- |
+| native Laika | 96 | 1 | 1 | 2 | 96% (90.2–98.4) | 0 | 0 | 514 frames (8.6 s) | 0.24 / 1.25 |
+| Hard | 78 | 9 | 5 | 8 | 78% (68.9–85.0) | 0 | 0 | 804 frames (13.4 s) | 0.26 / 0.53 |
+| Simple | 78 | 2 | 2 | 18 | 78% (68.9–85.0) | 0 | 0 | 774 frames (12.9 s) | 0.23 / 0.37 |
 
-LLM calls: 0 · tokens: N/A · cost: $0 (local NumPy inference). Run date and commit: TODO.
+LLM calls: 0 · tokens: N/A · cost: $0. Inference is local NumPy, under 1.3 ms per decision against a 16.7 ms frame.
 
-## 4. Smoke checks already run (2026-10-31)
+How the opponents were driven:
+- **Laika** runs inside the engine in seat 1.
+- **Hard and Simple** drive seat 1 through the game's own public observation and request path, at the decision rate the game uses for them (10 per second).
+- u19588 always plays seat 0.
 
-- `scripts/evaluate.py --seeds 1000 1001`:
-  - result: 1 win, 1 loss, 0 illegal actions;
-  - this is a smoke test only, not evidence of strength.
+**Reading the results.**
+- u19588 beat all three opponents on maps it had never been checked on.
+- Its strongest result is against native Laika, the opponent it was trained against: 96%, above the 89% on the reused development seeds. The intervals overlap, so this is not a claim that it improved.
+- Against the scripted bots it wins less often, and most non-wins are different:
+  - against Hard, more of them are losses and double kills, because Hard fires predictively;
+  - against Simple, most are time draws (18 of 22): Simple wanders on a patrol route and rarely fires, and u19588 often does not chase it down within 30 s.
+- This fits training against a single opponent. The policy learned to duel an aggressive planner, not to hunt a passive target.
+- Sample trace of observation → action for the first 120 frames of seed 1000: [`eval/trace-seed1000-first120.jsonl`](eval/trace-seed1000-first120.jsonl). Each row has the observation channels, their hash and the chosen action.
+
+## 4. Other checks run (2026-10-31)
+
 - `scripts/run_checks.py`, all passing:
   - 5 Rust test binaries;
   - 496 Python tests;
   - one full u19588 round.
+- The same checks pass in CI on the author's fork (macOS arm64).
 
 ## 5. Limitations
 
+- One run of 100 seeds per opponent; the intervals above are the honest error bars.
 - The learned player always sits in seat 0. The ABI has no seat swap, so side balance comes only from per-seed mazes and spawns.
 - The engine is built for macOS arm64. Other platforms use the browser build.
 - The training-environment digest pins the Rust sources u19588 was trained on.

@@ -72,8 +72,9 @@ rebuilds the native library from source, then runs `scripts/run_checks.py`. The 
 | What | Command (working directory: `midterms/jarrettchen217`) |
 | --- | --- |
 | One headless round, u19588 against native Laika | `uv run --frozen python scripts/evaluate.py --seeds 1000` |
+| Against Hard or Simple (or `all`) | add `--opponent hard` |
 | Log observation → action for that round | add `--trace reports/trace.jsonl` |
-| The frozen held-out suite | `uv run --frozen python scripts/evaluate.py --suite eval/heldout-suite-v1.json --out eval/heldout-results-v1.json` |
+| The frozen held-out suite, all three opponents | `uv run --frozen python scripts/evaluate.py --suite eval/heldout-suite-v1.json --opponent all --out eval/heldout-results-v1.json` |
 | A different model, without changing code | add `--model path/to/actor.json`, or set `TANK_HYBRID_MODEL` |
 
 ## The player's interface (five operations)
@@ -174,5 +175,5 @@ Labels:
 - `research/killfield/tank_transfer/actor.py`: the NumPy forward pass used by the learned player.
 - `tests/`: Python and Rust tests.
 - `scripts/`: `run_checks.py`, `evaluate.py`, `build_native.py`.
-- `eval/`: the frozen held-out suite and, once run, its results.
+- `eval/`: the frozen held-out suite, its one run's results (u19588 won 96/100 vs Laika, 78/100 vs Hard and vs Simple), and a sample observation → action trace.
 - `peer-notes/`: playtest notes given and received.
